@@ -1,42 +1,33 @@
 import React from 'react'
 import './Contact.css'
 
-/*const Contact = ({avatar, name, online}) => {
-    return (
-       <div className="Contact">
-       <img className="avatar" src={avatar} alt={name}/>
-       <div className='contain'>
-      <p className='name'>{name}</p>
-      
-      <div className='status'>
-      <div className={online? 'status-online': 'status-offline'}></div>
-      <p className='status-text'>
-             {online? 'online': 'offline'}
-      </p>
-     
-     </div>
-     </div>
- </div>
- 
+class Contact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      online: props.online,
+    };}
 
-    );
-  }
-*/
-const Contact = ({avatar, name, online}) => {
-return(
-  <div className="Contact">
-    <img className="avatar" src={avatar} alt={name}/>
-    <div>
-      <p className="name">{name}</p>
-      <div className="status">
-        <p className="status-text">
-          <span className={online ? "status-online" : "status-offline"}></span>
-          {online ? "online" : "offline"}
-        </p>
+   render() {
+     return (
+      <div className="Contact">
+    <img className="avatar" src={this.props.avatar} alt={this.props.name}/>
+    <div className="statusName">
+      <div className="name">{this.props.name}</div>
+        <div className="status"
+         onClick={event => {
+                const newOnline = !this.state.online;
+                this.setState({ online: newOnline }) }}>
+          <div className="status-text">
+          <div className={this.state.online ? "status-online" : "status-offline"}>
+          </div>
+          {this.state.online ? "online" : "offline"}
+        </div>
       </div>
    </div>
-</div>
-);
+   </div>
+     );
+   }
 }
 
 
